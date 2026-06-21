@@ -39,12 +39,7 @@ public class AuthService {
 		user.setEmail(request.getEmail());
 		user.setPassword(passwordEncoder.encode(request.getPassword()));
 
-		String role = request.getRole();
-		if (role != null && role.equalsIgnoreCase("ADMIN")) {
-			user.setRole(User.Role.ADMIN);
-		} else {
-			user.setRole(User.Role.USER);
-		}
+		user.setRole(User.Role.USER);
 
 		userRepository.save(user);
 		return new MessageResponse("User registered successfully!");
